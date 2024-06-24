@@ -34,4 +34,11 @@
           @endforeach
       </tbody>
   </table>
+
+    @if ($posts->count())
+        <div class="mt-4">
+            {{ $posts->links() }}
+        </div>
+    @endif
+
 @endsection
