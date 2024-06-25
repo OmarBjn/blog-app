@@ -55,7 +55,11 @@ class PostController extends Controller
 
         // this is the second way it is good and secure but you have to add ( $fillable var in Post Model and set PostRequest )
         Post::create($request->validated());
-        return to_route('posts.index');
+
+        $flashMessageKey = 'success';
+        $flashMessage = 'Post created successfully';
+
+        return to_route('posts.index')->with($flashMessageKey, $flashMessage);
     }
 
     public function edit(Post $post){
@@ -68,7 +72,10 @@ class PostController extends Controller
 
         $post->update($request->validated());
 
-        return to_route('posts.show', $post->id);
+        $flashMessageKey = 'success';
+        $flashMessage = 'Post updated successfully';
+
+        return to_route('posts.show', $post->id)->with($flashMessageKey, $flashMessage);
 
     }
 
@@ -76,7 +83,10 @@ class PostController extends Controller
 
         $post->delete();
 
-        return to_route('posts.index');
+        $flashMessageKey = 'danger';
+        $flashMessage = 'Post deleted successfully';
+
+        return to_route('posts.index')->with($flashMessageKey, $flashMessage);
 
     }
 

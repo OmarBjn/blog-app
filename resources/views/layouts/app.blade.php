@@ -21,6 +21,14 @@
         </div>
     </div>
 </nav>
+
+    @if (session()->has($flashMessageKey ?? ''))
+        <div class="alert alert-{{$flashMessage}}">
+            {{ session($flashMessageKey) }}
+            @dd($flashMessageKey)
+        </div>
+    @endif
+
 <div class="container mt-4">
     @yield('content')
 </div>
